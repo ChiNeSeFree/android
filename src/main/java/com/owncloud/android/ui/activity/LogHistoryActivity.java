@@ -217,7 +217,7 @@ public class LogHistoryActivity extends ToolbarActivity {
                     File file = new File(mLogPath,logFileName[i]);
                     if (file.exists()) {
                         // Check if FileReader is ready
-                        final InputStreamReader inputStreamReader = new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8);
+                        final InputStreamReader inputStreamReader = new InputStreamReader(new FileInputStream(file), "UTF8");
                         if (inputStreamReader.ready()) {
                             br = new BufferedReader(inputStreamReader);
                             while ((line = br.readLine()) != null) {

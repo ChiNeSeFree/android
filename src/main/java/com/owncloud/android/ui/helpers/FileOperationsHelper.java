@@ -116,7 +116,7 @@ public class FileOperationsHelper {
         InputStreamReader fr = null;
         BufferedReader br = null;
         try {
-            fr = new InputStreamReader(new FileInputStream(storagePath), StandardCharsets.UTF_8);
+            fr = new InputStreamReader(new FileInputStream(storagePath), "UTF8");
             br = new BufferedReader(fr);
 
             String line;
