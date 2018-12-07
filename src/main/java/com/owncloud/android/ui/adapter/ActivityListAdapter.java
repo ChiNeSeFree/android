@@ -24,8 +24,6 @@ import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.PictureDrawable;
 import android.net.Uri;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.TextPaint;
@@ -72,6 +70,9 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 /**
  * Adapter for the activity view
  */
@@ -102,11 +103,11 @@ public class ActivityListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     public void setActivityItems(List<Object> activityItems, OwnCloudClient client, boolean clear) {
         this.client = client;
         String sTime = "";
-        
+
         if (clear) {
             values.clear();
         }
-        
+
         for (Object o : activityItems) {
             Activity activity = (Activity) o;
             String time;

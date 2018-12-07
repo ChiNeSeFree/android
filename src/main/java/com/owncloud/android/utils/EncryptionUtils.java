@@ -24,8 +24,6 @@ package com.owncloud.android.utils;
 import android.accounts.Account;
 import android.content.Context;
 import android.os.Build;
-import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
 import android.util.Base64;
 
 import com.google.gson.Gson;
@@ -49,6 +47,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.RandomAccessFile;
+import java.nio.charset.StandardCharsets;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.Key;
@@ -83,6 +82,9 @@ import javax.crypto.spec.GCMParameterSpec;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.SecretKeySpec;
+
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 
 /**
  * Utils for encryption
@@ -381,7 +383,7 @@ public final class EncryptionUtils {
 
         String trimmedCert = cert.replace("-----BEGIN CERTIFICATE-----\n", "")
                 .replace("-----END CERTIFICATE-----\n", "");
-        byte[] encodedCert = trimmedCert.getBytes("UTF-8");
+        byte[] encodedCert = trimmedCert.getBytes(StandardCharsets.UTF_8);
         byte[] decodedCert = org.apache.commons.codec.binary.Base64.decodeBase64(encodedCert);
 
         CertificateFactory certFactory = CertificateFactory.getInstance("X.509");
@@ -478,7 +480,7 @@ public final class EncryptionUtils {
 
         int delimiterPosition = string.lastIndexOf(ivDelimiter);
         String cipherString = string.substring(0, delimiterPosition);
-        String ivString = string.substring(delimiterPosition + ivDelimiter.length(), string.length());
+        String ivString = string.substring(delimiterPosition + ivDelimiter.length());
 
         byte[] iv = new IvParameterSpec(decodeStringToBase64Bytes(ivString)).getIV();
 
